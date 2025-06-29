@@ -246,8 +246,8 @@ export default function TrekDetailPage() {
                         <StarIcon className="w-5 h-5 text-green-600 mr-2 mt-1" />
                         <span>{highlight}</span>
                       </li>
-                    ))}
-                  </ul>
+                ))}
+              </ul>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-3">Quick Facts</h3>
@@ -323,7 +323,7 @@ export default function TrekDetailPage() {
                   <div key={testimonial.id} className="border rounded-lg p-4">
                     <div className="flex items-center mb-4">
                       <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
-                        <Image
+                    <Image
                           src={testimonial.image}
                           alt={testimonial.name}
                           fill
@@ -394,8 +394,8 @@ export default function TrekDetailPage() {
                   >
                     <HeartIcon className="w-6 h-6" />
                   </button>
-                </div>
-                <div className="space-y-4">
+              </div>
+              <div className="space-y-4">
                   <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
                     Book Now
                   </button>

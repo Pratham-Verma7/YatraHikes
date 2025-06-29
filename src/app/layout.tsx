@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/context/CartContext';
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "YatraHikes - Discover Amazing Treks Across India",
@@ -20,12 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <CartProvider>
           <Navbar />
-          <main className="min-h-screen bg-white">
-            {children}
-          </main>
+        <main className="min-h-screen bg-white">
+          {children}
+        </main>
           <Footer />
         </CartProvider>
       </body>

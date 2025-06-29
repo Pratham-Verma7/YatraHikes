@@ -140,35 +140,36 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[90vh] w-full">
+      <section className="relative h-[90vh] w-full flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-bg.jpg"
-            alt="Mountain landscape"
+            alt="Himalayan landscape"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
+          {/* Gradient overlay for emotional impact */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-900/70 via-blue-900/40 to-orange-500/30" />
         </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-center mb-6">
+        <div className="relative h-full flex flex-col items-center justify-center text-white px-4 animate-fadein">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold text-center mb-6 drop-shadow-lg">
             Discover Your Next Adventure
           </h1>
-          <p className="text-xl md:text-2xl text-center mb-8 max-w-2xl">
-            Experience the thrill of trekking through India's most breathtaking landscapes
+          <p className="text-xl md:text-2xl text-center mb-8 max-w-2xl font-body drop-shadow">
+            Experience the thrill of trekking through India&apos;s most breathtaking landscapes
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/treks"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors flex items-center justify-center"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full text-lg font-semibold font-body shadow-lg transition-all flex items-center justify-center animate-fadein"
             >
               Book Your Next Trek
               <ArrowRightIcon className="w-5 h-5 ml-2" />
             </Link>
             <Link
               href="/contact"
-              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors backdrop-blur-sm"
+              className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full text-lg font-semibold font-body transition-colors backdrop-blur-sm border border-white/20 animate-fadein"
             >
               Contact Us
             </Link>
@@ -179,39 +180,53 @@ export default function Home() {
       {/* Featured Treks Section */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Treks</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Featured Treks</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto font-body">
             Explore our most popular treks, carefully curated for an unforgettable experience
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredTreks.map((trek) => (
-            <div key={trek.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative h-64">
+            <div key={trek.id} className="card group relative overflow-hidden animate-fadein">
+              <div className="relative h-72">
                 <Image
                   src={trek.image}
                   alt={trek.title}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
+                {/* State badge */}
+                <span className="absolute top-4 left-4 bg-green-600/90 text-white text-xs font-semibold px-3 py-1 rounded-full shadow font-body">
+                  {trek.location}
+                </span>
+                {/* Wishlist heart */}
+                <button className="absolute top-4 right-4 bg-white/80 hover:bg-orange-100 rounded-full p-2 shadow transition-all" title="Add to wishlist">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-orange-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75a5.25 5.25 0 00-4.5 2.472A5.25 5.25 0 007.5 3.75C4.5 3.75 2.25 6.086 2.25 8.917c0 4.28 7.09 9.208 8.25 9.833 1.16-.625 8.25-5.553 8.25-9.833 0-2.83-2.25-5.167-5.25-5.167z" />
+                  </svg>
+                </button>
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-semibold">{trek.title}</h3>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-yellow-400" />
-                    <span className="ml-1">{trek.rating}</span>
-                  </div>
+                  <h3 className="text-xl font-semibold font-heading group-hover:text-green-700 transition-colors">
+                    {trek.title}
+                  </h3>
+                  <span className="text-green-700 font-bold font-body text-lg">₹{trek.price.toLocaleString()}</span>
                 </div>
-                <p className="text-gray-600 mb-4">{trek.location} • {trek.duration}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-green-600 font-semibold">₹{trek.price}</span>
-                  <Link
-                    href={`/treks/${trek.id}`}
-                    className="text-green-600 hover:text-green-700 font-medium"
-                  >
-                    View Details →
-                  </Link>
+                <div className="flex items-center gap-2 mb-2">
+                  {/* Rating */}
+                  <span className="flex items-center text-yellow-400 font-semibold text-sm">
+                    <StarIcon className="w-5 h-5 mr-1" />
+                    {trek.rating}
+                  </span>
+                  <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full font-body ml-2">
+                    {trek.difficulty}
+                  </span>
+                </div>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2 font-body">{trek.duration} • {trek.location}</p>
+                <div className="flex items-center justify-between text-xs text-gray-500 font-body">
+                  <span>Uttarakhand</span>
+                  <span>Wishlist</span>
                 </div>
               </div>
             </div>
@@ -366,7 +381,7 @@ export default function Home() {
               Get inspired by our latest treks and adventures on Instagram
             </p>
             <a
-              href="https://instagram.com/yatrahikes"
+              href="https://www.instagram.com/yatrahikes/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center mt-4 text-green-600 hover:text-green-700 font-semibold"

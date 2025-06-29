@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7fafc; /* snow white */
+  --foreground: #1a2e05; /* deep forest green */
+  --primary: #228B22; /* forest green */
+  --secondary: #00aaff; /* sky blue */
+  --cta: #ff7f32; /* warm orange */
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 24px rgba(34,139,34,0.08);
+  --radius: 1.25rem;
+  --font-body: 'Poppins', Arial, Helvetica, sans-serif;
+  --font-heading: 'Playfair Display', serif;
 }
 
 @theme inline {
@@ -16,11 +25,45 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --card-bg: #171717;
+    --card-shadow: 0 4px 24px rgba(0,170,255,0.10);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin-bottom: 0.5em;
+}
+
+img, .card {
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(34,139,34,0.16);
+}
+
+:focus {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
 }
