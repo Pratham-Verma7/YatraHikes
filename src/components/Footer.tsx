@@ -15,20 +15,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gradient-to-br from-green-900 via-blue-900/80 to-orange-500/40 text-gray-200 font-body">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">About YatraHikes</h3>
+            <h3 className="text-white text-xl font-heading font-bold mb-4">About YatraHikes</h3>
             <p className="text-sm">
               Connecting adventure enthusiasts with the majestic Himalayas through safe and memorable trekking experiences.
             </p>
+            <div className="mt-4 inline-flex items-center gap-2 bg-green-700/90 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+              <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 20.5C6.201 20.5 1.5 15.799 1.5 10S6.201-.5 12-.5s10.5 4.701 10.5 10.5-4.701 10.5-10.5 10.5z" /></svg>
+              Emergency: <a href="tel:+919310676409" className="underline ml-1">+91 9310676409</a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-white text-xl font-heading font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-sm hover:text-white transition-colors">
@@ -63,47 +67,42 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Instagram Feed Preview */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-2">
-              <div className="flex items-center">
-                <PhoneIcon className="h-5 w-5 text-green-500 mr-2" />
-                <a href="tel:+919310676409" className="text-sm hover:text-white transition-colors">
-                  +91 9310676409
+            <h3 className="text-white text-xl font-heading font-bold mb-4">Instagram</h3>
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              {/* Replace with dynamic images if available */}
+              {[1,2,3,4,5,6].map((i) => (
+                <a key={i} href={`https://instagram.com/yatrahikes`} target="_blank" rel="noopener noreferrer">
+                  <img src={`/images/instagram/post${i}.jpg`} alt={`Instagram post ${i}`} className="rounded-lg w-full h-16 object-cover border-2 border-white/10 hover:scale-105 transition-transform" />
                 </a>
-              </div>
-              <div className="flex items-center">
-                <EnvelopeIcon className="h-5 w-5 text-green-500 mr-2" />
-                <a href="mailto:contact@yatrahikes.com" className="text-sm hover:text-white transition-colors">
-                  contact@yatrahikes.com
-                </a>
-              </div>
+              ))}
             </div>
+            <a href="https://instagram.com/yatrahikes" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-200 hover:underline">@yatrahikes</a>
           </div>
 
           {/* Newsletter & Social */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Stay Connected</h3>
+            <h3 className="text-white text-xl font-heading font-bold mb-4">Stay Connected</h3>
             <form onSubmit={handleSubmit} className="mb-4">
-              <div className="flex">
+              <div className="flex rounded-full overflow-hidden shadow-lg">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-green-500"
+                  className="flex-1 px-4 py-2 bg-white/10 text-white placeholder:text-gray-300 focus:outline-none"
                   required
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-green-600 text-white rounded-r-lg hover:bg-green-700 transition-colors"
+                  className="px-4 py-2 bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors"
                 >
                   Subscribe
                 </button>
               </div>
             </form>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mt-2">
               <a
                 href="https://instagram.com/yatrahikes"
                 target="_blank"
@@ -129,7 +128,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
+        <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm">
               Copyright © {new Date().getFullYear()} YatraHikes. All rights reserved.
