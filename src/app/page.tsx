@@ -11,7 +11,7 @@ const featuredTreks = [
     duration: "6 Days",
     difficulty: "Moderate",
     price: 15999,
-    image: "/images/valley-of-flowers.jpg",
+    image: "/images/treks/uttarakhand/valley-of-flowers.jpg",
     rating: 4.8,
   },
   {
@@ -21,7 +21,7 @@ const featuredTreks = [
     duration: "6 Days",
     difficulty: "Easy",
     price: 12999,
-    image: "/images/kedarkantha.jpg",
+    image: "/images/treks/uttarakhand/kedarkantha1.jpg",
     rating: 4.7,
   },
   {
@@ -31,7 +31,7 @@ const featuredTreks = [
     duration: "5 Days",
     difficulty: "Moderate",
     price: 14999,
-    image: "/images/hampta-pass.jpg",
+    image: "/images/treks/himachal/hampta-pass.jpg",
     rating: 4.9,
   },
 ];
@@ -39,19 +39,19 @@ const featuredTreks = [
 const destinations = [
   {
     name: "Uttarakhand",
-    image: "/images/uttarakhand.jpg",
+    image: "/images/treks/uttarakhand/uttrakhand.jpg",
     trekCount: 15,
     slug: "uttarakhand",
   },
   {
     name: "Himachal Pradesh",
-    image: "/images/himachal.jpg",
+    image: "/images/treks/himachal/himachal.jpg",
     trekCount: 12,
     slug: "himachal-pradesh",
   },
   {
     name: "Kashmir",
-    image: "/images/kashmir.jpg",
+    image: "/images/treks/kashmir/kashmir.jpg",
     trekCount: 8,
     slug: "kashmir",
   },
@@ -180,8 +180,8 @@ export default function Home() {
       {/* Featured Treks Section */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Featured Treks</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto font-body">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Featured Treks</h2>
+          <p className="text-gray-800 max-w-2xl mx-auto font-body">
             Explore our most popular treks, carefully curated for an unforgettable experience
           </p>
         </div>
@@ -238,9 +238,9 @@ export default function Home() {
       <section className="bg-gray-50 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Discover Treks by Destination</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore treks across India's most beautiful regions
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Discover Treks by Destination</h2>
+            <p className="text-gray-800 max-w-2xl mx-auto">
+              Explore treks across India&apos;s most beautiful regions
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -270,9 +270,9 @@ export default function Home() {
       {/* Why Choose Us Section */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose YatraHikes</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We're committed to providing the best trekking experience
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Why Choose YatraHikes</h2>
+          <p className="text-gray-800 max-w-2xl mx-auto">
+            We&apos;re committed to providing the best trekking experience
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -303,8 +303,8 @@ export default function Home() {
       <section className="bg-gray-50 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Trekkers Say</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">What Our Trekkers Say</h2>
+            <p className="text-gray-800 max-w-2xl mx-auto">
               Join thousands of satisfied trekkers who have experienced the magic of YatraHikes
             </p>
           </div>
@@ -340,8 +340,8 @@ export default function Home() {
       {/* Blog Preview Section */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest from Our Blog</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Latest from Our Blog</h2>
+          <p className="text-gray-800 max-w-2xl mx-auto">
             Tips, guides, and stories from the trekking community
           </p>
         </div>
@@ -442,11 +442,9 @@ export default function Home() {
       {/* Final CTA Section */}
       <section className="py-20 px-4 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready for Your Next Adventure?
-          </h2>
-          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Join us on an unforgettable journey through India's most beautiful landscapes
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready for Your Next Adventure?</h2>
+          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
+            Join us on an unforgettable journey through India&apos;s most beautiful landscapes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

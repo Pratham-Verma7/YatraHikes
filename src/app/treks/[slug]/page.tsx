@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Metadata } from 'next';
 import { 
   MapPinIcon, 
   ClockIcon, 
@@ -28,12 +27,17 @@ const trek: Trek = {
   duration: '6 Days',
   difficulty: 'Moderate',
   price: 15999,
-  imageUrl: '/images/valley-of-flowers.jpg',
+  imageUrl: '/images/treks/uttarakhand/valley-of-flowers.jpg',
   gallery: [
-    '/images/valley-of-flowers-1.jpg',
-    '/images/valley-of-flowers-2.jpg',
-    '/images/valley-of-flowers-3.jpg',
-    '/images/valley-of-flowers-4.jpg',
+    '/images/treks/uttarakhand/valley-of-flowers.jpg',
+    '/images/treks/uttarakhand/uttrakhand.jpg',
+    '/images/treks/uttarakhand/kedarkantha1.jpg',
+    '/images/treks/uttarakhand/kedarkantha-juda-ka-talab.jpg',
+    '/images/treks/uttarakhand/kedarkantha3.jpg',
+    '/images/treks/uttarakhand/kadarkantha-peak.jpg',
+    '/images/treks/uttarakhand/kadarkantha4.jpg',
+    '/images/treks/uttarakhand/kedarkanta2.jpg',
+    '/images/treks/uttarakhand/kedarkantha-temple.jpg',
   ],
   itinerary: [
     {
@@ -149,7 +153,6 @@ const testimonials = [
 export default function TrekDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isWishlist, setIsWishlist] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % trek.gallery.length);
@@ -162,12 +165,12 @@ export default function TrekDetailPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section with Gallery */}
-      <div className="relative h-[60vh] bg-black">
+      <div className="relative h-[60vh] bg-black overflow-hidden">
         <Image
           src={trek.gallery[currentImageIndex]}
           alt={trek.title}
           fill
-          className="object-cover opacity-80"
+          className="object-cover opacity-80 transition-all duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -189,17 +192,32 @@ export default function TrekDetailPage() {
             </div>
           </div>
         </div>
+        {/* Gallery Thumbnails */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {trek.gallery.map((img, idx) => (
+            <button
+              key={img}
+              onClick={() => setCurrentImageIndex(idx)}
+              className={`w-16 h-10 rounded-lg overflow-hidden border-2 ${currentImageIndex === idx ? 'border-orange-500' : 'border-white/40'} transition-all`}
+              title={`View image ${idx + 1}`}
+            >
+              <Image src={img} alt={`Gallery ${idx + 1}`} fill className="object-cover" />
+            </button>
+          ))}
+        </div>
         {/* Gallery Navigation */}
         <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
           <button
             onClick={prevImage}
             className="p-2 rounded-full bg-black/50 text-white hover:bg-black/70"
+            title="Previous image"
           >
             <ArrowRightIcon className="w-6 h-6 rotate-180" />
           </button>
           <button
             onClick={nextImage}
             className="p-2 rounded-full bg-black/50 text-white hover:bg-black/70"
+            title="Next image"
           >
             <ArrowRightIcon className="w-6 h-6" />
           </button>
@@ -391,6 +409,7 @@ export default function TrekDetailPage() {
                     className={`p-2 rounded-full ${
                       isWishlist ? 'text-red-500' : 'text-gray-400'
                     } hover:bg-gray-100`}
+                    title={isWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                   >
                     <HeartIcon className="w-6 h-6" />
                   </button>
@@ -406,7 +425,7 @@ export default function TrekDetailPage() {
                 <div className="mt-6 pt-6 border-t">
                   <h3 className="font-semibold mb-4">Share this trek</h3>
                   <div className="flex space-x-4">
-                    <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
+                    <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200" title="Share trek">
                       <ShareIcon className="w-5 h-5" />
                     </button>
                     {/* Add more social sharing buttons */}
