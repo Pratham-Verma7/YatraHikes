@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRightIcon, StarIcon, ShieldCheckIcon, UserGroupIcon, CurrencyRupeeIcon, HashtagIcon } from "@heroicons/react/24/outline";
 import FeaturedTreks from '../components/FeaturedTreks';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
+import Navbar from '../components/Navbar';
 
 // Sample data - This would come from your backend
 const destinations = [
@@ -109,21 +110,20 @@ const instagramPosts = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] w-full flex items-center justify-center">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Himalayan landscape"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Gradient overlay for emotional impact */}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-900/70 via-blue-900/40 to-orange-500/30" />
-        </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-white px-4 animate-fadein">
+    <>
+      <Navbar />
+      {/* Hero Section - full video background, no gradient */}
+      <section className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden">
+        <video
+          src="/images/hero-bg-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-white px-4">
           <h1 className="text-5xl md:text-7xl font-heading font-bold text-center mb-6 drop-shadow-lg">
             Discover Your Next Adventure
           </h1>
@@ -140,7 +140,7 @@ export default function Home() {
             </Link>
             <Link
               href="/contact"
-              className="bg-white/10 hover:bg-white/20 text-white px-10 py-4 rounded-full text-lg font-semibold font-body transition-colors backdrop-blur-sm border border-white/20 animate-fadein"
+              className="bg-white/20 hover:bg-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold font-body transition-colors backdrop-blur-sm border border-white/20 animate-fadein"
             >
               Contact Us
             </Link>
@@ -380,6 +380,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

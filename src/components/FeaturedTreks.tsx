@@ -1,15 +1,22 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperClass } from "swiper/types";
 import "swiper/css";
 import "swiper/css/autoplay";
 import TrekCard from "./TrekCard";
 import { treks } from "@/data/treks";
 
 export default function FeaturedTreks() {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
+
+  // Find the active index for dot navigation
+  // We'll use a state to track the active index
+  // Swiper's onSlideChange event gives us the realIndex
+  // so we can sync the dots with the current slide
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="py-20 px-0 max-w-7xl mx-auto">
@@ -29,6 +36,7 @@ export default function FeaturedTreks() {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="w-full"
           onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           breakpoints={{
             0: { slidesPerView: 1 },
             640: { slidesPerView: 1.2 },
@@ -36,9 +44,9 @@ export default function FeaturedTreks() {
             1200: { slidesPerView: 3 },
           }}
         >
-          {treks.map((trek, idx) => (
+          {treks.map((trek) => (
             <SwiperSlide key={trek.id}>
-              {({ isActive }) => (
+              {({ isActive }: { isActive: boolean }) => (
                 <div
                   className={`transition-all duration-500 flex flex-col justify-end h-[480px] ${
                     isActive
@@ -62,7 +70,9 @@ export default function FeaturedTreks() {
           {treks.map((_, idx) => (
             <button
               key={idx}
-              className={`w-3 h-3 rounded-full transition-all bg-green-200 swiper-pagination-bullet`}
+              className={`w-3 h-3 rounded-full transition-all swiper-pagination-bullet ${
+                activeIndex === idx ? "bg-green-600" : "bg-green-200"
+              }`}
               onClick={() => {
                 swiperRef.current?.slideToLoop(idx);
               }}
