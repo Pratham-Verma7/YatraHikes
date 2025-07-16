@@ -1,41 +1,12 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, StarIcon, ShieldCheckIcon, UserGroupIcon, CurrencyRupeeIcon, HashtagIcon } from "@heroicons/react/24/outline";
+import FeaturedTreks from '../components/FeaturedTreks';
+import 'react-horizontal-scrolling-menu/dist/styles.css';
 
 // Sample data - This would come from your backend
-const featuredTreks = [
-  {
-    id: 1,
-    title: "Valley of Flowers Trek",
-    location: "Uttarakhand",
-    duration: "6 Days",
-    difficulty: "Moderate",
-    price: 15999,
-    image: "/images/treks/uttarakhand/valley-of-flowers.jpg",
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    title: "Kedarkantha Trek",
-    location: "Uttarakhand",
-    duration: "6 Days",
-    difficulty: "Easy",
-    price: 12999,
-    image: "/images/treks/uttarakhand/kedarkantha1.jpg",
-    rating: 4.7,
-  },
-  {
-    id: 3,
-    title: "Hampta Pass Trek",
-    location: "Himachal Pradesh",
-    duration: "5 Days",
-    difficulty: "Moderate",
-    price: 14999,
-    image: "/images/treks/himachal/hampta-pass.jpg",
-    rating: 4.9,
-  },
-];
-
 const destinations = [
   {
     name: "Uttarakhand",
@@ -178,61 +149,7 @@ export default function Home() {
       </section>
 
       {/* Featured Treks Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Featured Treks</h2>
-          <p className="text-gray-800 max-w-2xl mx-auto font-body">
-            Explore our most popular treks, carefully curated for an unforgettable experience
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredTreks.map((trek) => (
-            <div key={trek.id} className="card group relative overflow-hidden animate-fadein">
-              <div className="relative h-72">
-                <Image
-                  src={trek.image}
-                  alt={trek.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                {/* State badge */}
-                <span className="absolute top-4 left-4 bg-green-600/90 text-white text-xs font-semibold px-3 py-1 rounded-full shadow font-body">
-                  {trek.location}
-                </span>
-                {/* Wishlist heart */}
-                <button className="absolute top-4 right-4 bg-white/80 hover:bg-orange-100 rounded-full p-2 shadow transition-all" title="Add to wishlist">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-orange-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75a5.25 5.25 0 00-4.5 2.472A5.25 5.25 0 007.5 3.75C4.5 3.75 2.25 6.086 2.25 8.917c0 4.28 7.09 9.208 8.25 9.833 1.16-.625 8.25-5.553 8.25-9.833 0-2.83-2.25-5.167-5.25-5.167z" />
-                  </svg>
-                </button>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-semibold font-heading group-hover:text-green-700 transition-colors">
-                    {trek.title}
-                  </h3>
-                  <span className="text-green-700 font-bold font-body text-lg">₹{trek.price.toLocaleString()}</span>
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                  {/* Rating */}
-                  <span className="flex items-center text-yellow-400 font-semibold text-sm">
-                    <StarIcon className="w-5 h-5 mr-1" />
-                    {trek.rating}
-                  </span>
-                  <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full font-body ml-2">
-                    {trek.difficulty}
-                  </span>
-                </div>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2 font-body">{trek.duration} • {trek.location}</p>
-                <div className="flex items-center justify-between text-xs text-gray-500 font-body">
-                  <span>Uttarakhand</span>
-                  <span>Wishlist</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FeaturedTreks />
 
       {/* Destinations Section */}
       <section className="bg-gray-50 py-20 px-4">
