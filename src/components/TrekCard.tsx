@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { StarIcon, HeartIcon, MapPinIcon, ClockIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
+import { StarIcon, HeartIcon, ClockIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 
 interface Trek {
   id: string;
@@ -76,10 +76,7 @@ export default function TrekCard({ trek }: TrekCardProps) {
                 {trek.rating}
               </span>
             )}
-            <span className="flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full font-body">
-              <MapPinIcon className="w-4 h-4" />
-              {trek.location}
-            </span>
+
             <span className="flex items-center gap-1 bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full font-body">
               <ClockIcon className="w-4 h-4" />
               {trek.duration}

@@ -42,11 +42,11 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-4 md:p-6 sticky top-20 z-30 font-body transition-all">
+    <div className="bg-white rounded-2xl shadow-xl p-4 md:p-6 font-body transition-all">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {/* Search Bar */}
         <div className="lg:col-span-4">
-          <label htmlFor="search" className="block text-sm font-semibold text-green-900 mb-2 font-body">
+          <label htmlFor="search" className="block text-sm font-bold text-gray-900 mb-2 font-body">
             Search Treks
           </label>
           <div className="relative">
@@ -56,23 +56,23 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
               placeholder="Search treks..."
               value={filters.searchQuery}
               onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-green-200 rounded-full bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition-all"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-orange-400 shadow-sm transition-all text-gray-900 placeholder-gray-400 hover:border-orange-300 focus:border-orange-400"
               aria-label="Search treks"
             />
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-400" aria-hidden="true" />
+            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-orange-400" aria-hidden="true" />
           </div>
         </div>
 
         {/* State Filter */}
         <div>
-          <label htmlFor="state" className="block text-sm font-semibold text-green-900 mb-2 font-body">
+          <label htmlFor="state" className="block text-sm font-bold text-gray-900 mb-2 font-body">
             State
           </label>
           <select
             id="state"
             value={filters.state}
             onChange={(e) => handleFilterChange('state', e.target.value)}
-            className="w-full border border-green-200 rounded-full px-4 py-2 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm font-body transition-all"
+            className="w-full border border-gray-200 rounded-xl px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-orange-400 shadow-sm font-body transition-all text-gray-900 hover:border-orange-300 focus:border-orange-400"
             aria-label="Filter by state"
           >
             <option value="">All States</option>
@@ -86,14 +86,14 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
 
         {/* Difficulty Filter */}
         <div>
-          <label htmlFor="difficulty" className="block text-sm font-semibold text-green-900 mb-2 font-body">
+          <label htmlFor="difficulty" className="block text-sm font-bold text-gray-900 mb-2 font-body">
             Difficulty
           </label>
           <select
             id="difficulty"
             value={filters.difficulty}
             onChange={(e) => handleFilterChange('difficulty', e.target.value)}
-            className="w-full border border-green-200 rounded-full px-4 py-2 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm font-body transition-all"
+            className="w-full border border-gray-200 rounded-xl px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-orange-400 shadow-sm font-body transition-all text-gray-900 hover:border-orange-300 focus:border-orange-400"
             aria-label="Filter by difficulty"
           >
             <option value="">All Difficulties</option>
@@ -107,8 +107,8 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
 
         {/* Price Range Filter */}
         <div className="lg:col-span-2">
-          <label htmlFor="price-range" className="block text-sm font-semibold text-green-900 mb-2 font-body">
-            Price Range: <span className="text-green-700 font-bold">₹{localPriceRange[0]}</span> - <span className="text-green-700 font-bold">₹{localPriceRange[1]}</span>
+          <label htmlFor="price-range" className="block text-sm font-bold text-gray-900 mb-2 font-body">
+            Price Range: <span className="text-orange-600 font-bold">₹{localPriceRange[0]}</span> - <span className="text-orange-600 font-bold">₹{localPriceRange[1]}</span>
           </label>
           <div className="flex items-center space-x-4">
             <input
@@ -121,7 +121,7 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
               onChange={(e) => handlePriceChange([parseInt(e.target.value), localPriceRange[1]])}
               onMouseUp={handlePriceChangeEnd}
               onTouchEnd={handlePriceChangeEnd}
-              className="w-full accent-green-600"
+              className="w-full accent-orange-500 focus:accent-orange-600"
               aria-label="Minimum price"
             />
             <input
@@ -134,7 +134,7 @@ export default function TrekFilters({ filters, setFilters, setCurrentPage }: Tre
               onChange={(e) => handlePriceChange([localPriceRange[0], parseInt(e.target.value)])}
               onMouseUp={handlePriceChangeEnd}
               onTouchEnd={handlePriceChangeEnd}
-              className="w-full accent-green-600"
+              className="w-full accent-orange-500 focus:accent-orange-600"
               aria-label="Maximum price"
             />
           </div>

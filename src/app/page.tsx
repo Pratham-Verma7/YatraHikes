@@ -6,6 +6,9 @@ import { ArrowRightIcon, StarIcon, ShieldCheckIcon, UserGroupIcon, CurrencyRupee
 import FeaturedTreks from '../components/FeaturedTreks';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import Navbar from '../components/Navbar';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
 // Sample data - This would come from your backend
 const destinations = [
@@ -152,10 +155,16 @@ export default function Home() {
       <FeaturedTreks />
 
       {/* Destinations Section */}
-      <section className="bg-gray-50 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-gray-50 py-20 px-4 relative overflow-hidden">
+        {/* Subtle SVG background */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.08" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Discover Treks by Destination</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900 font-heading">Discover Treks by <span className='text-orange-500'>Destination</span></h2>
             <p className="text-gray-800 max-w-2xl mx-auto">
               Explore treks across India&apos;s most beautiful regions
             </p>
@@ -165,7 +174,7 @@ export default function Home() {
               <Link
                 key={destination.slug}
                 href={`/treks/${destination.slug}`}
-                className="group relative h-80 rounded-xl overflow-hidden"
+                className="group relative h-80 rounded-2xl overflow-hidden shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
                 <Image
                   src={destination.image}
@@ -175,8 +184,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
-                  <p className="text-white/80">{destination.trekCount} Treks</p>
+                  <h3 className="text-2xl font-bold mb-2 font-heading drop-shadow-lg">{destination.name}</h3>
+                  <p className="text-white/80 font-semibold drop-shadow">{destination.trekCount} Treks</p>
                 </div>
               </Link>
             ))}
@@ -185,115 +194,184 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Why Choose YatraHikes</h2>
-          <p className="text-gray-800 max-w-2xl mx-auto">
-            We&apos;re committed to providing the best trekking experience
-          </p>
+      <section className="py-20 px-4 max-w-7xl mx-auto relative overflow-hidden">
+        {/* Subtle background pattern/gradient */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.08" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center p-6">
-            <ShieldCheckIcon className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Safety First</h3>
-            <p className="text-gray-600">Certified guides and comprehensive safety measures</p>
+        <div className="relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900 font-heading">Why Choose <span className="text-orange-500">YatraHikes</span></h2>
+            <p className="text-gray-800 max-w-2xl mx-auto">
+              We&apos;re committed to providing the best trekking experience
+            </p>
           </div>
-          <div className="text-center p-6">
-            <UserGroupIcon className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Expert Guides</h3>
-            <p className="text-gray-600">Experienced and certified trek leaders</p>
-          </div>
-          <div className="text-center p-6">
-            <CurrencyRupeeIcon className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Best Value</h3>
-            <p className="text-gray-600">Competitive pricing with no hidden costs</p>
-          </div>
-          <div className="text-center p-6">
-            <StarIcon className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Quality Service</h3>
-            <p className="text-gray-600">Premium equipment and well-planned itineraries</p>
+          {/* Horizontal scroll for mobile, grid for desktop */}
+          <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x md:snap-none">
+            {/* Animated, expanded feature cards */}
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '0ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <ShieldCheckIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Safety First</h3>
+              <p className="text-gray-600">Certified guides and comprehensive safety measures</p>
+            </div>
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '100ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <UserGroupIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Expert Guides</h3>
+              <p className="text-gray-600">Experienced and certified trek leaders</p>
+            </div>
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '200ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <CurrencyRupeeIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Best Value</h3>
+              <p className="text-gray-600">Competitive pricing with no hidden costs</p>
+            </div>
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '300ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <StarIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Quality Service</h3>
+              <p className="text-gray-600">Premium equipment and well-planned itineraries</p>
+            </div>
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '400ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <HashtagIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Community</h3>
+              <p className="text-gray-600">A vibrant community of passionate trekkers</p>
+            </div>
+            <div className="group text-center p-8 bg-white rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 min-w-[260px] snap-center animate-fadein" style={{animationDelay: '500ms'}}>
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 group-hover:bg-orange-100 transition-colors">
+                <ArrowRightIcon className="w-10 h-10 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">Easy Booking</h3>
+              <p className="text-gray-600">Seamless online booking and support</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-gray-50 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-gray-50 py-20 px-4 relative overflow-hidden">
+        {/* Subtle background pattern/gradient */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.10" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">What Our Trekkers Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900 font-heading">What Our Trekkers Say</h2>
             <p className="text-gray-800 max-w-2xl mx-auto">
               Join thousands of satisfied trekkers who have experienced the magic of YatraHikes
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Swiper slider for testimonials */}
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={1}
+            spaceBetween={32}
+            loop={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            className="w-full"
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              900: { slidesPerView: 2 },
+            }}
+          >
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow-lg">
-                <div className="flex items-center mb-4">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+              <SwiperSlide key={testimonial.id}>
+                <div className="group bg-white p-8 rounded-2xl shadow-xl border-b-4 border-orange-400 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                  <div className="flex items-center mb-4">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 border-4 border-orange-400 group-hover:border-orange-500 transition-colors">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg text-gray-900">{testimonial.name}</h3>
+                      <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex mb-2">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <StarIcon key={i} className="w-5 h-5 text-orange-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 italic flex-1 mb-4 relative">
+                    <span className="absolute -left-6 top-0 text-4xl text-orange-200 font-serif select-none">“</span>
+                    {testimonial.text}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+      {/* Blog Preview Section */}
+      <section className="py-20 px-4 max-w-7xl mx-auto relative overflow-hidden">
+        {/* Subtle SVG background */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.08" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900 font-heading">Latest from Our <span className='text-orange-500'>Blog</span></h2>
+            <p className="text-gray-800 max-w-2xl mx-auto">
+              Tips, guides, and stories from the trekking community
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {blogPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                className="group"
+              >
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl border-b-4 border-orange-400 transition-all duration-300 hover:-translate-y-2">
+                  <div className="relative h-64">
                     <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
+                      src={post.image}
+                      alt={post.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform group-hover:scale-105"
                     />
                   </div>
-                  <div>
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                  <div className="p-6">
+                    <p className="text-orange-500 font-semibold mb-2">{post.date}</p>
+                    <h3 className="text-xl font-bold mb-2 font-heading text-gray-900">{post.title}</h3>
+                    <p className="text-gray-600">{post.excerpt}</p>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-4">{testimonial.text}</p>
-                <div className="flex">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <StarIcon key={i} className="w-5 h-5 text-yellow-400" />
-                  ))}
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Blog Preview Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900">Latest from Our Blog</h2>
-          <p className="text-gray-800 max-w-2xl mx-auto">
-            Tips, guides, and stories from the trekking community
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blogPosts.map((post) => (
-            <Link
-              key={post.id}
-              href={`/blog/${post.slug}`}
-              className="group"
-            >
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative h-64">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-gray-600 mb-2">{post.date}</p>
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  <p className="text-gray-600">{post.excerpt}</p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* Instagram Feed Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 bg-gray-50 relative overflow-hidden">
+        {/* Subtle SVG background */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.08" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Follow Our Adventures</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-900 font-heading">Follow Our <span className='text-orange-500'>Adventures</span></h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Get inspired by our latest treks and adventures on Instagram
             </p>
@@ -301,7 +379,7 @@ export default function Home() {
               href="https://www.instagram.com/yatrahikes/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center mt-4 text-green-600 hover:text-green-700 font-semibold"
+              className="inline-flex items-center mt-4 text-orange-500 hover:text-orange-600 font-semibold"
             >
               <HashtagIcon className="w-6 h-6 mr-2" />
               @yatrahikes
@@ -314,7 +392,7 @@ export default function Home() {
                 href={post.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative aspect-square overflow-hidden rounded-lg"
+                className="group relative aspect-square overflow-hidden rounded-2xl shadow-xl border-b-4 border-orange-400 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
                 <Image
                   src={post.image}
@@ -332,10 +410,16 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-green-600 py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Stay Updated with YatraHikes
+      <section className="bg-green-600 py-20 px-4 relative overflow-hidden">
+        {/* Subtle SVG background */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.10" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+            Stay Updated with <span className='text-orange-400'>YatraHikes</span>
           </h2>
           <p className="text-white/80 mb-8">
             Subscribe to our newsletter for trek updates, special offers, and travel tips
@@ -344,11 +428,11 @@ export default function Home() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+              className="flex-1 px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
             <button
               type="submit"
-              className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              className="bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-colors"
             >
               Subscribe
             </button>
@@ -357,16 +441,22 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 px-4 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready for Your Next Adventure?</h2>
+      <section className="py-20 px-4 bg-gray-900 text-white relative overflow-hidden">
+        {/* Subtle SVG background */}
+        <div className="absolute inset-0 pointer-events-none select-none opacity-10 z-0" aria-hidden="true">
+          <svg width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbbf24" fillOpacity="0.10" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" />
+          </svg>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white font-heading">Ready for Your <span className='text-orange-400'>Next Adventure?</span></h2>
           <p className="text-white/90 mb-8 max-w-2xl mx-auto">
             Join us on an unforgettable journey through India&apos;s most beautiful landscapes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/treks"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors flex items-center justify-center"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors flex items-center justify-center"
             >
               Explore Treks
               <ArrowRightIcon className="w-5 h-5 ml-2" />

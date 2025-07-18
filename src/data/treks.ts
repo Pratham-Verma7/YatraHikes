@@ -11,6 +11,17 @@ export interface Trek {
   price: number;
   imageUrl: string;
   rating?: number;
+  gallery?: string[];
+  itinerary?: Array<{ day: number; title: string; description: string }>;
+  highlights?: string[];
+  inclusions?: string[];
+  exclusions?: string[];
+  mapUrl?: string;
+  maxParticipants?: number;
+  minAge?: number;
+  bestTime?: string[];
+  elevation?: string;
+  distance?: string;
 }
 
 export const treks: Trek[] = [
@@ -26,6 +37,7 @@ export const treks: Trek[] = [
     price: 15999,
     imageUrl: '/images/treks/uttarakhand/valley-of-flowers.jpg',
     rating: 4.8,
+    gallery: ['/images/treks/uttarakhand/valley-of-flowers.jpg'],
   },
   {
     id: '2',
@@ -39,6 +51,7 @@ export const treks: Trek[] = [
     price: 12999,
     imageUrl: '/images/treks/uttarakhand/kedarkantha1.jpg',
     rating: 4.7,
+    gallery: ['/images/treks/uttarakhand/kedarkantha1.jpg'],
   },
   {
     id: '3',
@@ -52,6 +65,7 @@ export const treks: Trek[] = [
     price: 14999,
     imageUrl: '/images/treks/himachal/hampta-pass.jpg',
     rating: 4.9,
+    gallery: ['/images/treks/himachal/hampta-pass.jpg'],
   },
   {
     id: '4',
@@ -65,6 +79,7 @@ export const treks: Trek[] = [
     price: 18999,
     imageUrl: '/images/treks/kashmir/kashmir.jpg',
     rating: 4.9,
+    gallery: ['/images/treks/kashmir/kashmir.jpg'],
   },
   {
     id: '5',
@@ -78,6 +93,7 @@ export const treks: Trek[] = [
     price: 10999,
     imageUrl: '/images/treks/himachal/hampta-pass2.jpg',
     rating: 4.6,
+    gallery: ['/images/treks/himachal/hampta-pass2.jpg'],
   },
   {
     id: '6',
@@ -91,6 +107,7 @@ export const treks: Trek[] = [
     price: 20999,
     imageUrl: '/images/treks/uttarakhand/kedarkantha3.jpg',
     rating: 4.7,
+    gallery: ['/images/treks/uttarakhand/kedarkantha3.jpg'],
   },
   {
     id: '7',
@@ -104,5 +121,6 @@ export const treks: Trek[] = [
     price: 13999,
     imageUrl: '/images/treks/uttarakhand/kedarkantha-temple.jpg',
     rating: 4.8,
+    gallery: ['/images/treks/uttarakhand/kedarkantha-temple.jpg'],
   },
 ]; 
